@@ -138,7 +138,7 @@ public class CleanSingleDataSet {
                 // match image
                 this.cleanImageMap.putIfAbsent(imgId, this.imageMap.get(imgId));
                 // match category
-                this.cleanCategoryMap.putIfAbsent(categoryId, this.categoryMap.get(categoryId));
+//                this.cleanCategoryMap.putIfAbsent(categoryId, this.categoryMap.get(categoryId));
                 // match license
                 this.cleanLicenseMap.putIfAbsent(this.imageMap.get(imgId).getLicense(),
                         this.licenseMap.get(this.imageMap.get(imgId).getLicense()));
@@ -148,7 +148,7 @@ public class CleanSingleDataSet {
         // verify if license has duplicate key
 
         // TODO debug
-        System.out.println("clean categories: " + this.cleanCategoryMap.size());
+//        System.out.println("clean categories: " + this.cleanCategoryMap.size());
         System.out.println("clean image: " + this.cleanImageMap.size());
         System.out.println("clean annotations: " + this.cleanAnnotationMap.size());
         System.out.println("clean license: " + this.cleanLicenseMap.size());
@@ -167,14 +167,14 @@ public class CleanSingleDataSet {
         }
 
         // category
-        ArrayList<CocoCategory> categoryList = new ArrayList<>(this.cleanCategoryMap.values());
-        // category - renew id
-        for(int i = 0; i < categoryList.size(); i++) {
-            // backup old key
-            categoryKeyMap.put(categoryList.get(i).getId(), i + 1);
-            // assign new one
-            categoryList.get(i).setId(i + 1);
-        }
+//        ArrayList<CocoCategory> categoryList = new ArrayList<>(this.cleanCategoryMap.values());
+//        // category - renew id
+//        for(int i = 0; i < categoryList.size(); i++) {
+//            // backup old key
+//            categoryKeyMap.put(categoryList.get(i).getId(), i + 1);
+//            // assign new one
+//            categoryList.get(i).setId(i + 1);
+//        }
 
         // image
         ArrayList<CocoImage> imageList = new ArrayList<>(this.cleanImageMap.values());
@@ -205,13 +205,13 @@ public class CleanSingleDataSet {
             // assign new image id
             cA.setImageId(this.imageKeyMap.get(cA.getImageId()));
             // assign new category id
-            cA.setCategoryId(this.categoryKeyMap.get(cA.getCategoryId()));
+//            cA.setCategoryId(this.categoryKeyMap.get(cA.getCategoryId()));
         }
 
         // assemble
         rtn.setLicenses(licenseList);
         rtn.setInfo(this.cocoEntity.getInfo());
-        rtn.setCategories(categoryList);
+        rtn.setCategories(this.cocoEntity.getCategories());
         rtn.setImages(imageList);
         rtn.setAnnotations(annotationList);
 
